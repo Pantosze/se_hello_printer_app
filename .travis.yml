@@ -5,4 +5,18 @@ install:
   - make deps
 script:
   - make test
-
+after_success:
+  - make docker_build
+language: python
+services:
+ - docker
+language: python
+services:
+ - docker
+python:
+ - "2.7"
+install:
+ = make test
+ - make lint
+ - make docker_build
+ - make docker_push
